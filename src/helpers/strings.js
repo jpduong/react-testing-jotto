@@ -23,7 +23,14 @@ const getStringByLanguage = (
   languageCode,
   stringKey,
   strings = languageStrings
-) => {};
+) => {
+  if (!strings[languageCode] || !strings[languageCode][stringKey]) {
+    // fallback to english
+    return strings.en[stringKey];
+  }
+
+  return strings[languageCode][stringKey];
+};
 
 // for future mocking
 export default {
